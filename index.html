@@ -493,6 +493,184 @@
             color: #7a6b5c;
         }
 
+.image-carousel {
+    padding: 0;              /* Remove padding like hero */
+    background: #f7f4f0;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;           /* Full viewport height like hero */
+}
+
+.carousel-container {
+    display: flex;
+    width: calc(100vw * 8);  /* 8 full-screen images */
+    animation: scroll-left 60s linear infinite;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 1;
+}
+
+.carousel-text-overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 60px 40px;
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(93, 74, 55, 0.1);
+}
+
+.carousel-text-overlay h2 {
+    font-size: 48px;
+    font-weight: 100;
+    letter-spacing: -1px;
+    margin-bottom: 30px;
+}
+
+.carousel-text-overlay p {
+    font-size: 18px;
+    line-height: 1.8;
+    font-weight: 300;
+    color: white;
+}
+
+     .carousel-image {
+    width: 100vw;           /* Full viewport width like hero */
+    height: 100vh;          /* Full viewport height like hero */
+    margin-right: 0;        /* Remove margin for seamless coverage */
+    background-size: cover;
+    background-position: center;
+    border-radius: 0;       /* Remove border radius for full coverage */
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+        .carousel-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(93, 74, 55, 0.1), rgba(93, 74, 55, 0.05));
+            transition: opacity 0.3s ease;
+        }
+
+        .carousel-image:hover::before {
+            opacity: 0.7;
+        }
+
+        .carousel-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* Individual carousel images - replace with your image URLs */
+        .carousel-image:nth-child(1) {
+            background-image: url('./images/amplitude-magazin-B9xBxClDgBQ-unsplash.jpg');
+        }
+
+        .carousel-image:nth-child(2) {
+            background-image: url('./images/alexander-krivitskiy-zle2_jp-AUw-unsplash.jpg');
+        }
+
+        .carousel-image:nth-child(3) {
+            background-image: url('./images/huha-inc-Hp-3N5Gl1Ak-unsplash.jpg');
+        }
+
+        .carousel-image:nth-child(4) {
+            background-image: url('./images/nataliya-melnychuk-dFBhXJHKNeo-unsplash.jpg');
+        }
+
+        .carousel-image:nth-child(5) {
+            background-image: url('./images/fleur-kaan-e7jpGYe7OtU-unsplash.jpg');
+        }
+
+        .carousel-image:nth-child(6) {
+            background-image: url('./images/lesly-juarez-1AhGNGKuhR0-unsplash.jpg');
+        }
+
+        .carousel-image:nth-child(7) {
+            background-image: url('./images/wilhelm-gunkel-AMPQP0OPJTE-unsplash.jpg');
+        }
+
+        .carousel-image:nth-child(8) {
+            background-image: url('./images/jessica-felicio-QS9ZX5UnS14-unsplash.jpg');
+        }
+
+        /* Fallback for images without background */
+        /* .carousel-image.no-bg-image:nth-child(1) {
+            background: linear-gradient(135deg, #f2ede7, #e8ddd1);
+            background-image: none;
+        }
+
+        .carousel-image.no-bg-image:nth-child(2) {
+            background: linear-gradient(135deg, #e8ddd1, #d4c5b3);
+            background-image: none;
+        }
+
+        .carousel-image.no-bg-image:nth-child(3) {
+            background: linear-gradient(135deg, #d4c5b3, #c4b5a0);
+            background-image: none;
+        }
+
+        .carousel-image.no-bg-image:nth-child(4) {
+            background: linear-gradient(135deg, #c4b5a0, #b5a394);
+            background-image: none;
+        }
+
+        .carousel-image.no-bg-image:nth-child(5) {
+            background: linear-gradient(135deg, #b5a394, #a69284);
+            background-image: none;
+        }
+
+        .carousel-image.no-bg-image:nth-child(6) {
+            background: linear-gradient(135deg, #a69284, #978174);
+            background-image: none;
+        }
+
+        .carousel-image.no-bg-image:nth-child(7) {
+            background: linear-gradient(135deg, #978174, #887064);
+            background-image: none;
+        }
+
+        .carousel-image.no-bg-image:nth-child(8) {
+            background: linear-gradient(135deg, #887064, #f2ede7);
+            background-image: none;
+        } */
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+
+        /* Responsive adjustments for carousel */
+        @media (max-width: 768px) {
+            .carousel-image {
+                width: 300px;
+                height: 200px;
+                margin-right: 20px;
+            }
+
+            .carousel-container {
+                width: calc(320px * 8);
+                animation-duration: 40s;
+            }
+        }
+
         /* Ingredient showcase - NEW */
         .ingredients {
             padding: 120px 40px;
@@ -765,6 +943,27 @@
             <p class="mouse-move">Every formula is thoughtfully developed using the finest natural ingredients, combined with cutting-edge science to deliver visible results. Our commitment to quality means each product is tested for purity, potency, and performance.</p>
         </div>
     </section>
+
+    <!-- Image Carousel Section -->
+<!-- Image Carousel Section -->
+<section class="image-carousel">
+    <div class="carousel-container">
+        <div class="carousel-image no-bg-image"></div>
+        <div class="carousel-image no-bg-image"></div>
+        <div class="carousel-image no-bg-image"></div>
+        <div class="carousel-image no-bg-image"></div>
+        <div class="carousel-image no-bg-image"></div>
+        <div class="carousel-image no-bg-image"></div>
+        <div class="carousel-image no-bg-image"></div>
+        <div class="carousel-image no-bg-image"></div>
+    </div>
+    
+    <!-- ADD THIS TEXT OVERLAY -->
+    <div class="carousel-text-overlay mouse-move">
+        <h2>The Science of Beauty</h2>
+        <p>Our advanced formulations combine nature's finest ingredients with cutting-edge skincare science. Each product is carefully crafted to nourish, protect, and enhance your skin's natural radiance, delivering visible results that speak for themselves.</p>
+    </div>
+</section>
 
     <!-- Ingredients Section -->
     <section class="ingredients">
@@ -1181,6 +1380,19 @@
                 delay: 0.5
             }
         );
+
+        // Carousel hover effects
+        document.querySelectorAll('.carousel-image').forEach(image => {
+            image.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+                cursorFollower.classList.add('hover');
+            });
+
+            image.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+                cursorFollower.classList.remove('hover');
+            });
+        });
 
         // Navigation links stagger animation
         gsap.fromTo('.nav-links a', 
