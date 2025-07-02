@@ -23,6 +23,48 @@
             color: #3a2a1f;
             background: #f7f4f0;
             overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: #5d4a37;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease-out;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(93, 74, 55, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease-out;
+        }
+
+        /* Cursor hover states */
+        .cursor.hover {
+            transform: scale(1.5);
+            background: #5d4a37;
+            mix-blend-mode: normal;
+        }
+
+        .cursor-follower.hover {
+            transform: scale(1.5);
+            border-color: #5d4a37;
+        }
+
+        /* Mouse movement responsive elements */
+        .mouse-move {
+            transition: transform 0.2s ease-out;
         }
 
         /* Header */
@@ -63,11 +105,27 @@
             font-weight: 300;
             font-size: 14px;
             letter-spacing: 1px;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .nav-links a:hover {
             opacity: 0.6;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #5d4a37;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* Hero Section */
@@ -135,10 +193,27 @@
             transition: all 0.3s ease;
             opacity: 0;
             transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #5d4a37;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
         }
 
         .cta-button:hover {
-            background: #5d4a37;
             color: #f7f4f0;
         }
 
@@ -184,20 +259,6 @@
             background-image: none;
         } */
 
-        /* .philosophy-image::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            border: 1px solid rgba(181, 163, 148, 0.6);
-            border-radius: 50%;
-            background: rgba(247, 244, 240, 0.3);
-            backdrop-filter: blur(5px);
-        } */
-
         /* Products Section */
         .products {
             background: #ede5db;
@@ -230,6 +291,24 @@
             text-align: center;
             transform: translateY(50px);
             opacity: 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .product-card:hover::before {
+            left: 100%;
         }
 
         .product-image {
@@ -241,6 +320,11 @@
             margin: 0 auto 30px;
             position: relative;
             overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
         }
 
         /* Individual product images - replace with your product image URLs */
@@ -355,11 +439,13 @@
             font-size: 14px;
             letter-spacing: 1px;
             opacity: 0.8;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .footer-links a:hover {
             opacity: 1;
+            transform: translateY(-2px);
         }
 
         .footer-bottom {
@@ -383,6 +469,11 @@
             background-position: center;
             min-height: 500px;
         }
+
+        /* .brand-image.no-bg-image {
+            background: linear-gradient(45deg, #d4c5b3, #e8ddd1);
+            background-image: none;
+        } */
 
         .brand-content {
             padding: 80px 60px;
@@ -419,6 +510,11 @@
 
         .ingredient-item {
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .ingredient-item:hover {
+            transform: translateY(-10px);
         }
 
         .ingredient-image {
@@ -429,6 +525,11 @@
             border-radius: 50%;
             margin: 0 auto 20px;
             position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .ingredient-item:hover .ingredient-image {
+            transform: scale(1.05);
         }
 
         /* Individual ingredient images */
@@ -444,6 +545,20 @@
             background-image: url('./images/wilhelm-gunkel-AMPQP0OPJTE-unsplash.jpg');
         }
 
+        /* .ingredient-item:nth-child(1) .ingredient-image.no-bg-image {
+            background: linear-gradient(45deg, #a8d8a8, #c8e6c8);
+            background-image: none;
+        }
+
+        .ingredient-item:nth-child(2) .ingredient-image.no-bg-image {
+            background: linear-gradient(45deg, #ffa500, #ffb347);
+            background-image: none;
+        }
+
+        .ingredient-item:nth-child(3) .ingredient-image.no-bg-image {
+            background: linear-gradient(45deg, #dda0dd, #e6e6fa);
+            background-image: none;
+        } */
 
         .ingredient-name {
             font-size: 18px;
@@ -457,7 +572,39 @@
             color: #7a6b5c;
             line-height: 1.5;
         }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.1;
+            transition: transform 0.2s ease-out;
+        }
+
+        .floating-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #5d4a37;
+        }
+
+        .floating-square {
+            width: 60px;
+            height: 60px;
+            background: #d4c5b3;
+            transform: rotate(45deg);
+        }
+
         @media (max-width: 768px) {
+            body {
+                cursor: auto;
+            }
+            
+            .cursor,
+            .cursor-follower {
+                display: none;
+            }
+
             header {
                 padding: 15px 20px;
             }
@@ -496,6 +643,14 @@
                 flex-direction: column;
                 gap: 20px;
             }
+
+            .brand-story {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-content {
+                padding: 40px 20px;
+            }
         }
 
         /* Scroll indicator */
@@ -518,15 +673,24 @@
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
     <!-- Scroll Indicator -->
     <div class="scroll-indicator">
         <div class="scroll-progress"></div>
     </div>
 
+    <!-- Floating Elements -->
+    <div class="floating-element floating-circle" style="top: 20%; left: 10%;"></div>
+    <div class="floating-element floating-square" style="top: 60%; right: 15%;"></div>
+    <div class="floating-element floating-circle" style="bottom: 30%; left: 20%; width: 60px; height: 60px;"></div>
+
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">SERENE</div>
+            <div class="logo mouse-move">SERENE</div>
             <ul class="nav-links">
                 <li><a href="#home">HOME</a></li>
                 <li><a href="#philosophy">PHILOSOPHY</a></li>
@@ -539,34 +703,34 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Pure Beauty</h1>
-            <div class="hero-subtitle">SKINCARE REIMAGINED</div>
-            <p class="hero-description">
+            <h1 class="mouse-move">Pure Beauty</h1>
+            <div class="hero-subtitle mouse-move">SKINCARE REIMAGINED</div>
+            <p class="hero-description mouse-move">
                 Elevate your skincare routine with our premium collection. 
                 From simply replenishing to truly nurturing, discover the art of natural beauty.
             </p>
-            <a href="#products" class="cta-button">EXPLORE COLLECTION</a>
+            <a href="#products" class="cta-button mouse-move">EXPLORE COLLECTION</a>
         </div>
     </section>
 
     <!-- Philosophy Section -->
     <section class="philosophy" id="philosophy">
         <div class="philosophy-grid">
-            <div class="philosophy-text">
+            <div class="philosophy-text mouse-move">
                 <p>Your skin is unique.</p>
                 <p>It deserves care that understands its individual needs.</p>
                 <p class="highlight">We believe in nurturing from within, not just treating from without.</p>
                 <p>This is our philosophy. This is your journey to radiant skin.</p>
             </div>
-            <div class="philosophy-image no-bg-image"></div>
+            <div class="philosophy-image no-bg-image mouse-move"></div>
         </div>
     </section>
 
     <!-- Products Section -->
     <section class="products" id="products">
-        <h2 class="section-title">Our Collection</h2>
+        <h2 class="section-title mouse-move">Our Collection</h2>
         <div class="products-grid">
-            <div class="product-card">
+            <div class="product-card mouse-move">
                 <div class="product-image no-bg-image"></div>
                 <h3 class="product-title">Renewal Essence</h3>
                 <p class="product-description">
@@ -574,7 +738,7 @@
                 </p>
                 <div class="product-price">$89</div>
             </div>
-            <div class="product-card">
+            <div class="product-card mouse-move">
                 <div class="product-image no-bg-image"></div>
                 <h3 class="product-title">Hydrating Cream</h3>
                 <p class="product-description">
@@ -582,7 +746,7 @@
                 </p>
                 <div class="product-price">$65</div>
             </div>
-            <div class="product-card">
+            <div class="product-card mouse-move">
                 <div class="product-image no-bg-image"></div>
                 <h3 class="product-title">Complete Serum</h3>
                 <p class="product-description">
@@ -595,28 +759,28 @@
 
     <!-- Brand Story Section -->
     <section class="brand-story">
-        <div class="brand-image no-bg-image"></div>
+        <div class="brand-image no-bg-image mouse-move"></div>
         <div class="brand-content">
-            <h3>Crafted with Care</h3>
-            <p>Every formula is thoughtfully developed using the finest natural ingredients, combined with cutting-edge science to deliver visible results. Our commitment to quality means each product is tested for purity, potency, and performance.</p>
+            <h3 class="mouse-move">Crafted with Care</h3>
+            <p class="mouse-move">Every formula is thoughtfully developed using the finest natural ingredients, combined with cutting-edge science to deliver visible results. Our commitment to quality means each product is tested for purity, potency, and performance.</p>
         </div>
     </section>
 
     <!-- Ingredients Section -->
     <section class="ingredients">
-        <h2 class="section-title">Key Ingredients</h2>
+        <h2 class="section-title mouse-move">Key Ingredients</h2>
         <div class="ingredients-grid">
-            <div class="ingredient-item">
+            <div class="ingredient-item mouse-move">
                 <div class="ingredient-image no-bg-image"></div>
                 <div class="ingredient-name">Hyaluronic Acid</div>
                 <div class="ingredient-benefit">Deep hydration and plumping</div>
             </div>
-            <div class="ingredient-item">
+            <div class="ingredient-item mouse-move">
                 <div class="ingredient-image no-bg-image"></div>
                 <div class="ingredient-name">Vitamin C</div>
                 <div class="ingredient-benefit">Brightening and antioxidant protection</div>
             </div>
-            <div class="ingredient-item">
+            <div class="ingredient-item mouse-move">
                 <div class="ingredient-image no-bg-image"></div>
                 <div class="ingredient-name">Peptides</div>
                 <div class="ingredient-benefit">Firming and renewal support</div>
@@ -626,14 +790,14 @@
 
     <!-- About Section -->
     <section class="about no-bg-image" id="about">
-        <p class="about-text">
+        <p class="about-text mouse-move">
             Born from the belief that true beauty comes from healthy, nurtured skin, 
             SERENE represents a new approach to skincare that honors both science and nature.
         </p>
-        <p class="about-cta">
+        <p class="about-cta mouse-move">
             Experience the difference of mindful skincare.
         </p>
-        <a href="#" class="cta-button">LEARN MORE</a>
+        <a href="#" class="cta-button mouse-move">LEARN MORE</a>
     </section>
 
     <!-- Footer -->
@@ -655,6 +819,73 @@
     <script>
         // Register ScrollTrigger plugin
         gsap.registerPlugin(ScrollTrigger);
+
+        // Custom cursor variables
+        let cursor = document.querySelector('.cursor');
+        let cursorFollower = document.querySelector('.cursor-follower');
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+        let followerX = 0;
+        let followerY = 0;
+
+        // Mouse movement tracking
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Smooth cursor animation
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            followerX += (mouseX - followerX) * 0.05;
+            followerY += (mouseY - followerY) * 0.05;
+
+            cursor.style.transform = `translate3d(${cursorX - 10}px, ${cursorY - 10}px, 0)`;
+            cursorFollower.style.transform = `translate3d(${followerX - 20}px, ${followerY - 20}px, 0)`;
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Mouse movement parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const mouseXPercent = (e.clientX / window.innerWidth) * 2 - 1;
+            const mouseYPercent = (e.clientY / window.innerHeight) * 2 - 1;
+
+            // Apply parallax to elements with mouse-move class
+            document.querySelectorAll('.mouse-move').forEach(element => {
+                const speed = element.dataset.speed || 0.02;
+                const x = mouseXPercent * 20 * speed;
+                const y = mouseYPercent * 20 * speed;
+                
+                element.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+            });
+
+            // Move floating elements
+            document.querySelectorAll('.floating-element').forEach((element, index) => {
+                const speed = 0.01 + (index * 0.005);
+                const x = mouseXPercent * 30 * speed;
+                const y = mouseYPercent * 30 * speed;
+                
+                element.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+            });
+        });
+
+        // Cursor hover effects
+        document.querySelectorAll('a, button, .product-card, .ingredient-item').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+                cursorFollower.classList.add('hover');
+            });
+
+            element.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+                cursorFollower.classList.remove('hover');
+            });
+        });
 
         // Scroll progress indicator
         function updateScrollProgress() {
@@ -766,6 +997,34 @@
             });
         });
 
+        // Ingredient items animation
+        gsap.to('.ingredient-item', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power3.out',
+            stagger: 0.15,
+            scrollTrigger: {
+                trigger: '.ingredients-grid',
+                start: 'top bottom-=100',
+                toggleActions: 'play none none reverse'
+            }
+        });
+
+        // Brand story animations
+        gsap.to('.brand-content h3, .brand-content p', {
+            opacity: 1,
+            x: 0,
+            duration: 1.2,
+            ease: 'power3.out',
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: '.brand-story',
+                start: 'top bottom-=100',
+                toggleActions: 'play none none reverse'
+            }
+        });
+
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -800,12 +1059,20 @@
             }
         });
 
-        // Hover effects for product cards
+        // Enhanced hover effects for product cards
         document.querySelectorAll('.product-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
                 gsap.to(card, {
-                    y: -10,
-                    duration: 0.3,
+                    y: -15,
+                    scale: 1.02,
+                    duration: 0.4,
+                    ease: 'power2.out'
+                });
+                
+                gsap.to(card.querySelector('.product-image'), {
+                    scale: 1.1,
+                    rotation: 5,
+                    duration: 0.4,
                     ease: 'power2.out'
                 });
             });
@@ -813,7 +1080,15 @@
             card.addEventListener('mouseleave', () => {
                 gsap.to(card, {
                     y: 0,
-                    duration: 0.3,
+                    scale: 1,
+                    duration: 0.4,
+                    ease: 'power2.out'
+                });
+                
+                gsap.to(card.querySelector('.product-image'), {
+                    scale: 1,
+                    rotation: 0,
+                    duration: 0.4,
                     ease: 'power2.out'
                 });
             });
@@ -821,6 +1096,107 @@
 
         // Initialize philosophy image scale
         gsap.set('.philosophy-image', { scale: 0.9, opacity: 0 });
+        
+        // Initialize ingredient items
+        gsap.set('.ingredient-item', { opacity: 0, y: 50 });
+        
+        // Initialize brand content
+        gsap.set('.brand-content h3, .brand-content p', { opacity: 0, x: -30 });
+
+        // Magnetic effect for buttons and links
+        document.querySelectorAll('.cta-button, .nav-links a').forEach(element => {
+            element.addEventListener('mousemove', (e) => {
+                const rect = element.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(element, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+
+            element.addEventListener('mouseleave', () => {
+                gsap.to(element, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: 'elastic.out(1, 0.3)'
+                });
+            });
+        });
+
+        // Text reveal animation on scroll
+        gsap.utils.toArray('.philosophy-text p').forEach((paragraph, index) => {
+            gsap.fromTo(paragraph, 
+                { 
+                    opacity: 0,
+                    y: 30
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: index * 0.1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: paragraph,
+                        start: 'top bottom-=50',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        // Floating elements animation
+        gsap.to('.floating-element', {
+            y: -20,
+            duration: 3,
+            ease: 'power1.inOut',
+            yoyo: true,
+            repeat: -1,
+            stagger: 0.5
+        });
+
+        // Performance optimization - reduce mouse events on mobile
+        if (window.innerWidth <= 768) {
+            document.removeEventListener('mousemove', animateCursor);
+            cursor.style.display = 'none';
+            cursorFollower.style.display = 'none';
+        }
+
+        // Logo animation on load
+        gsap.fromTo('.logo', 
+            { 
+                opacity: 0,
+                scale: 0.8
+            },
+            {
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                ease: 'elastic.out(1, 0.3)',
+                delay: 0.5
+            }
+        );
+
+        // Navigation links stagger animation
+        gsap.fromTo('.nav-links a', 
+            { 
+                opacity: 0,
+                y: -20
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: 'power3.out',
+                stagger: 0.1,
+                delay: 0.8
+            }
+        );
     </script>
 </body>
 </html>
